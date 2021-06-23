@@ -7,7 +7,7 @@ target 'Flix' do
 
   # Pods for Flix
 	pod 'AFNetworking'
-	
+	pod 'SVProgressHUD'
 
 
   target 'FlixTests' do
