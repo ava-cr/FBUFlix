@@ -9,7 +9,7 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
-// #import <SVProgressHUD/SVProgressHUD.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 // #import "SVProgressHUD.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -18,9 +18,6 @@
 
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-
-
 
 @end
 
@@ -42,14 +39,26 @@
 
 -(void) fetchMovies {
     
-    [self.activityIndicator startAnimating];
-    // [SVProgressHUD show];
+    [SVProgressHUD show];
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=b91af5506570876790ea086dac50f629&language=en-US&page=1"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
+               UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The internet connection appears to be offline."preferredStyle:(UIAlertControllerStyleAlert)];
+               // create a try again action
+               UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                        // handle response here.
+                                                                }];
+               // add the try again action to the alert controller
+               [alert addAction:tryAgainAction];
+               [self presentViewController:alert animated:YES completion:^{
+                   [self fetchMovies];
+               }];
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -67,9 +76,9 @@
                // TODO: Store the movies in a property to use elsewhere
                // TODO: Reload your table view data
            }
-        // [SVProgressHUD dismiss];
         
-        [self.activityIndicator stopAnimating];
+        [SVProgressHUD dismiss];
+        
         [self.refreshControl endRefreshing];
        }];
     [task resume];
