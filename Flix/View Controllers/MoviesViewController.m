@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -26,6 +27,14 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self fetchMovies];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+-(void) fetchMovies {
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=b91af5506570876790ea086dac50f629&language=en-US&page=1"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -49,6 +58,7 @@
                // TODO: Store the movies in a property to use elsewhere
                // TODO: Reload your table view data
            }
+        [self.refreshControl endRefreshing];
        }];
     [task resume];
 }
