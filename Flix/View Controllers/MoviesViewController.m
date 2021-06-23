@@ -52,12 +52,12 @@
                UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
                                                                   style:UIAlertActionStyleDefault
                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                        // handle response here.
+                   [self fetchMovies];
                                                                 }];
                // add the try again action to the alert controller
                [alert addAction:tryAgainAction];
                [self presentViewController:alert animated:YES completion:^{
-                   [self fetchMovies];
+                   // optional code for what happens after the alert controller has finished presenting
                }];
            }
            else {
