@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8L-km-RqY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="1225"/>
+            <point key="canvasLocation" x="851" y="1234"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sNB-To-Waa">
@@ -180,6 +180,7 @@
                                         <size key="customSize" width="164" height="227"/>
                                         <connections>
                                             <outlet property="posterView" destination="Jo0-bI-fEq" id="2uG-tf-rIl"/>
+                                            <segue destination="KwH-to-vC9" kind="show" id="61S-vV-cwJ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -234,6 +235,9 @@
             <point key="canvasLocation" x="432" y="-277"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="61S-vV-cwJ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
