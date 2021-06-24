@@ -136,14 +136,13 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length != 0) {
         NSLog(@"%@", searchText);
-        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
-                            return [evaluatedObject containsString:searchText];
-                        }];
-        NSLog(@"%@", predicate);
+//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+//                            return [evaluatedObject containsString:searchText];
+//                        }];
+//        NSLog(@"%@", predicate);
         
         
         self.filteredMovies = [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(title contains[c] %@)", searchText]];
-
         
     //    self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
         // NSLog(@"%@", self.filteredMovies);
@@ -168,7 +167,7 @@
     
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     
     DetailsViewController *detailsViewController = [segue destinationViewController];
     detailsViewController.movie = movie;
