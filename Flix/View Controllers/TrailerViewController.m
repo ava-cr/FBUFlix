@@ -20,13 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // activity monitor
     [SVProgressHUD show];
     
     NSString *baseURLString = @"https://api.themoviedb.org/3/movie/";
-    
     NSString *idURLString = [baseURLString stringByAppendingString:self.movieId];
-    
-    
     NSString *fullURLString = [idURLString stringByAppendingString:@"/videos?api_key=b91af5506570876790ea086dac50f629&language=en-US"];
     
     // network request
@@ -41,20 +39,11 @@
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            // NSLog(@"%@", dataDictionary);
-            
             NSArray *results = dataDictionary[@"results"];
-            // NSLog(@"%@", results[0][@"key"]);
-            
             NSString *key = [NSString stringWithFormat:@"%@", results[0][@"key"]];
-            
             NSString *youtubeURLString = [@"https://www.youtube.com/watch?v=" stringByAppendingString:key];
             
             self.urlString = youtubeURLString;
-            
-            
-            NSLog(@"%@", self.urlString);
-            
             
             NSURL *trailerURL = [NSURL URLWithString:self.urlString];
 
@@ -64,7 +53,6 @@
                                                  timeoutInterval:10.0];
             // Load Request into WebView.
             [SVProgressHUD dismiss];
-            
             [self.webView loadRequest:trailerRequest];
 
         }

@@ -27,11 +27,8 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    // self.searchBar.delegate = self;
     
     [self fetchMovies];
-    
-    // self.filteredMovies = self.movies;
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     
@@ -68,12 +65,7 @@
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                               
                self.movies = dataDictionary[@"results"];
-               
                [self.collectionView reloadData];
-
-               // TODO: Get the array of movies
-               // TODO: Store the movies in a property to use elsewhere
-               // TODO: Reload your table view data
            }
                 
        }];
@@ -136,10 +128,8 @@
     }];
     
     
-    
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
-    
     
     
     return cell;

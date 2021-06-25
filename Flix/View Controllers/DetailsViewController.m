@@ -68,9 +68,7 @@
         
         TrailerViewController *trailerViewController = [segue destinationViewController];
                 
-        
         NSString *idString = [NSString stringWithFormat:@"%@", self.movie[@"id"]];
-        
         trailerViewController.movieId = idString;
         
     }

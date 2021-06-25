@@ -35,13 +35,9 @@
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
     
-    
     [self fetchMovies];
-    
     self.filteredMovies = self.movies;
-    
-    // NSLog(@"%@", self.filteredMovies);
-    
+        
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -49,6 +45,7 @@
 
 -(void) fetchMovies {
     
+    // activity monitor
     [SVProgressHUD show];
     
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=b91af5506570876790ea086dac50f629&language=en-US&page=1"];
@@ -72,20 +69,13 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               
-               // NSLog(@"%@", dataDictionary);
-               
+                            
+               // get array of movies and store in a property
                self.movies = dataDictionary[@"results"];
                self.filteredMovies = self.movies;
                
-//               for (NSDictionary *movie in self.movies) {
-//                   NSLog(@"%@", movie[@"title"]);
-//               }
-
+               // reload table view data
                [self.tableView reloadData];
-               // TODO: Get the array of movies
-               // TODO: Store the movies in a property to use elsewhere
-               // TODO: Reload your table view data
            }
         
         [SVProgressHUD dismiss];
@@ -156,7 +146,6 @@
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = UIColor.darkGrayColor;
     cell.selectedBackgroundView = backgroundView;
-    
     
     
     return cell;
