@@ -35,6 +35,17 @@
     NSURL *backdropURL = [NSURL URLWithString:fullBackdropURLString];
     [self.backdropView setImageWithURL:backdropURL];
     
+    
+    // fading out backdrop images
+    CALayer *gradientLayer = self.backdropView.layer;
+    CAGradientLayer *gradientMaskLayer = [CAGradientLayer layer];
+    gradientMaskLayer.colors = @[ (id)([UIColor blackColor].CGColor), (id)([UIColor clearColor].CGColor) ];
+    gradientMaskLayer.startPoint = CGPointMake(0, 0.3); // middle left
+    gradientMaskLayer.endPoint = CGPointMake(0, 1.0); // bottom left
+    gradientMaskLayer.frame = self.backdropView.bounds;
+    gradientLayer.mask = gradientMaskLayer;
+    
+    
     self.titleLabel.text = self.movie[@"title"];
     self.synopsisLabel.text = self.movie[@"overview"];
     
