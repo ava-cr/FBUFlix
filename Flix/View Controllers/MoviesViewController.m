@@ -119,6 +119,11 @@
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
     
+    // customize table view cell selection
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = UIColor.darkGrayColor;
+    cell.selectedBackgroundView = backgroundView;
+    
     return cell;
 }
 
