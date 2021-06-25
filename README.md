@@ -2,7 +2,7 @@
 
 **Flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **17** hours spent in total
 
 ## User Stories
 
@@ -20,35 +20,39 @@ The following **optional** features are implemented:
 
 - [X] User can tap a poster in the collection view to see a detail screen of that movie
 - [X] User can search for a movie.
-- [ ] All images fade in as they are loading.
+- [X] All images fade in as they are loading.
 - [ ] User can view the large movie poster by tapping on a cell.
 - [ ] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
 - [X] Customize the selection effect of the cell.
 - [X] Customize the navigation bar.
 - [X] Customize the UI.
 - [ ] User can view the app on various device sizes and orientations.
-- [ ] Run your app on a real device.
+- [X] Run your app on a real device.
 
 The following **additional** features are implemented:
 
-- [X] Users can view the movie's trailer by tapping on the movie poster on the movie detail screen.
+- [X] Users can view the movie's trailer by tapping on the "Player Trailer" button or the movie poster on the movie detail screen.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Constraints! (especially within scroll views)
+2. Further customizing the UI (search bar, nav bar, etc.)
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here are two walkthroughs of the implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Walkthrough 1](https://github.com/ava-cr/FBUFlix/blob/main/gifs/flix1.gif)
+
+![Walkthrough 2](https://github.com/ava-cr/FBUFlix/blob/main/gifs/flix2.gif)
 
 GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+The major challenge I encountered was with constraints. Although I could get them to work on simpler views, when I implemented them on a scroll view I ran into issues with the scroll view not scrolling and the constraints not actually constraining. While I learned more about how to implement constrains in the process, I am definitely still unsure of the best and most effective way to go about it so I look forward to learning more about them next week!
 
 ## Credits
 
