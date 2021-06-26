@@ -40,11 +40,15 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 ## Video Walkthrough
 
-Here are two walkthroughs of the implemented user stories:
+Here are three walkthroughs of the implemented user stories:
 
 ![Walkthrough 1](https://github.com/ava-cr/FBUFlix/blob/main/gifs/flix1.gif)
 
 ![Walkthrough 2](https://github.com/ava-cr/FBUFlix/blob/main/gifs/flix2.gif)
+
+This walkthrough demonstrates the pull-to-refresh and network error alert features. In this walkthrough, the wifi is turned off to produce the network error and then turned back on before "Try Again" is pressed.
+
+![Walkthrough 3](https://github.com/ava-cr/FBUFlix/blob/main/gifs/flix3.gif)
 
 GIF created with [Kap](https://getkap.co/).
 
